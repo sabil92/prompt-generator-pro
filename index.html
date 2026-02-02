@@ -1,83 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>MASTER Prompt Generator Pro</title>
-<link rel="stylesheet" href="style.css">
+<title>Studio Prompt Director</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial; padding: 20px; background:#111; color:white;}
+select, textarea, button {width:100%; margin:5px 0; padding:10px;}
+textarea {height:300px;}
+button {background:#00ff88; border:none; font-weight:bold;}
+h2 {margin-top:20px;}
+</style>
 </head>
 
 <body>
 
-<div class="box">
+<h1>🎬 Studio Director Mode</h1>
 
-<h1>🎬 MASTER Prompt Generator</h1>
+<h2>Lingkungan</h2>
+<select id="location"></select>
+<select id="weather"></select>
+<select id="time"></select>
+<select id="mood"></select>
 
-<label>Subject</label>
-<select id="subject">
-<option>Cyberpunk city</option>
-<option>Mystical forest</option>
-<option>Space station</option>
-<option>Desert traveler</option>
-</select>
+<h2>Kamera</h2>
+<select id="shot"></select>
+<select id="angle"></select>
+<select id="movement"></select>
+<select id="focus"></select>
 
-<label>Style</label>
-<select id="style">
-<option>Cinematic ultra realistic</option>
-<option>Anime high detail</option>
-<option>Photorealistic 8K</option>
-<option>Dark fantasy</option>
-</select>
+<h2>Kualitas</h2>
+<select id="quality"></select>
+<select id="ratio"></select>
 
-<label>Camera</label>
-<select id="camera">
-<option>Wide drone shot</option>
-<option>Close cinematic lens</option>
-<option>Low angle dramatic</option>
-<option>Tracking camera</option>
-</select>
+<h2>Generate</h2>
+<button onclick="generate()">Generate Master Prompt</button>
 
-<label>Mood</label>
-<select id="mood">
-<option>Epic emotional</option>
-<option>Dark mysterious</option>
-<option>Bright hopeful</option>
-<option>Intense dramatic</option>
-</select>
-
-<button onclick="generatePrompt()">Generate Prompt</button>
-<button onclick="randomPrompt()">Random</button>
-
-<textarea id="prompt"></textarea>
-
-<hr>
-
-<label>Characters</label>
-<select id="characters">
-<option value="1">1 Person</option>
-<option value="2">2 People</option>
-<option value="3">3 People</option>
-</select>
-
-<label>Genre</label>
-<select id="genre">
-<option>Drama</option>
-<option>Comedy</option>
-<option>Horror</option>
-<option>Action</option>
-</select>
-
-<button onclick="generateDialog()">Generate Dialog</button>
-
-<textarea id="dialog"></textarea>
-
-<hr>
-
-<button onclick="generateScene()">Generate Story Scene</button>
-
-<textarea id="scene"></textarea>
-
-<button onclick="copyAll()">Copy All</button>
-
-</div>
+<textarea id="result"></textarea>
 
 <script src="app.js"></script>
 </body>
