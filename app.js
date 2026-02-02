@@ -1,60 +1,140 @@
-function generatePrompt() {
-const subject = document.getElementById("subject").value;
-const style = document.getElementById("style").value;
-const camera = document.getElementById("camera").value;
-const mood = document.getElementById("mood").value;
+const DB = {
 
-const text = subject + ", " + style + ", " + camera + ", " + mood + ", ultra detailed";
+location: [
+"pedesaan",
+"trotoar pinggir jalan kota",
+"di luar rumah gubuk",
+"di dalam rumah gubuk",
+"di samping rumah gubuk"
+],
 
-document.getElementById("prompt").value = text;
-}
+weather: [
+"cerah berawan",
+"malam berkabut",
+"hujan ringan",
+"angin kencang"
+],
 
-function randomPrompt() {
-["subject","style","camera","mood"].forEach(id=>{
-const el = document.getElementById(id);
-el.selectedIndex = Math.floor(Math.random()*el.options.length);
-});
-generatePrompt();
-}
+time: [
+"siang hari",
+"sore hari",
+"malam hari",
+"subuh berkabut"
+],
 
-function generateDialog() {
-const count = document.getElementById("characters").value;
-const genre = document.getElementById("genre").value;
+mood: [
+"sunyi emosional",
+"tegang mencekam",
+"hangat nostalgik",
+"dramatis intens"
+],
 
-const scripts = {
-Drama:{1:"Aku tak bisa berhenti sekarang…",
-2:"A: Kamu percaya aku?\nB: Selalu.",
-3:"A: Kita keluarga.\nB: Bertahan.\nC: Sampai akhir."},
-Comedy:{1:"Kenapa hidupku kayak sinetron gagal?",
-2:"A: Rencanamu?\nB: Improvisasi.",
-3:"A: Ide buruk.\nB: Setuju.\nC: Gas."},
-Horror:{1:"Ada sesuatu di belakangku…",
-2:"A: Kamu dengar itu?\nB: Jangan lihat…",
-3:"A: Kita tidak sendiri.\nB: Diam.\nC: Dia datang."},
-Action:{1:"Target terkunci.",
-2:"A: Serang kiri!\nB: Copy!",
-3:"A: Formasi!\nB: Dorong!\nC: Maju!"}
+shot: [
+"extreme close up",
+"close up",
+"medium shot",
+"wide cinematic shot"
+],
+
+angle: [
+"low angle",
+"high angle",
+"eye level",
+"dutch angle dramatis"
+],
+
+movement: [
+"slow tracking cinematic",
+"handheld realistis",
+"zoom pelan dramatis",
+"static shot"
+],
+
+focus: [
+"shallow depth of field",
+"deep focus",
+"soft cinematic blur"
+],
+
+quality: [
+"8K ultra HD",
+"4K cinematic",
+"masterpiece quality",
+"ultra detail",
+"hyper realistic"
+],
+
+ratio: [
+"9:16 vertical",
+"16:9 landscape",
+"1:1 square"
+]
+
 };
 
-document.getElementById("dialog").value = scripts[genre][count];
+function fillDB(){
+for(let key in DB){
+const el = document.getElementById(key);
+DB[key].forEach(item=>{
+const opt = document.createElement("option");
+opt.text = item;
+el.add(opt);
+});
 }
-
-function generateScene(){
-const scenes=[
-"Kota neon hujan malam. Kurir berdiri di atap. \"Ini pengiriman terakhirku.\"",
-"Hutan berkabut. Tim memasuki reruntuhan. \"Tempat ini hidup.\"",
-"Stasiun angkasa sunyi. Astronaut masuk perlahan. \"Ada seseorang di sini.\"",
-"Gurun saat fajar. Pengembara berjalan. \"Perjalanan baru dimulai.\""
-];
-document.getElementById("scene").value=scenes[Math.floor(Math.random()*scenes.length)];
 }
+fillDB();
 
-function copyAll(){
-const text =
-document.getElementById("prompt").value+"\n\n"+
-document.getElementById("dialog").value+"\n\n"+
-document.getElementById("scene").value;
+function generate(){
 
-navigator.clipboard.writeText(text);
-alert("Copied all!");
+const loc = location.value;
+const wea = weather.value;
+const tim = time.value;
+const moo = mood.value;
+const sho = shot.value;
+const ang = angle.value;
+const mov = movement.value;
+const foc = focus.value;
+const qua = quality.value;
+const rat = ratio.value;
+
+result.value = `
+PRIORITAS REFERENSI GAMBAR:
+Karakter harus sangat mirip dengan gambar referensi. Pertahankan struktur wajah, proporsi tubuh, pose, dan identitas visual. Jangan mendesain ulang karakter.
+
+DESKRIPSI ADEGAN:
+(isi adegan otomatis atau manual)
+
+Dialog (bahasa Indonesia, nada tenang datar)
+
+DETAIL KARAKTER 1:
+Penampilan: sesuai gambar referensi
+Pakaian: tekstur kotor realistis
+Ekspresi: tenang dan datar
+
+DETAIL KARAKTER 2:
+Penampilan: sesuai gambar referensi
+Pakaian: tekstur kotor realistis
+Ekspresi: tenang dan datar
+
+DETAIL KARAKTER 3:
+Penampilan: sesuai gambar referensi
+Pakaian: tekstur kotor realistis
+Ekspresi: tenang dan datar
+
+LINGKUNGAN:
+Lokasi: ${loc}
+Cuaca: ${wea}
+Waktu: ${tim}
+Suasana: ${moo}
+
+KAMERA SINEMATIK:
+Jenis shot: ${sho}
+Sudut kamera: ${ang}
+Gerakan kamera: ${mov}
+Kedalaman fokus: ${foc}
+
+KUALITAS OUTPUT:
+${qua}
+${rat}
+`;
 }
