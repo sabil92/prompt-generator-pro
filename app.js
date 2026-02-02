@@ -138,3 +138,16 @@ ${qua}
 ${rat}
 `;
 }
+function fillDB(){
+for(let key in DB){
+const el = document.getElementById(key);
+if(!el) continue;
+DB[key].forEach(item=>{
+const opt = document.createElement("option");
+opt.text = item;
+el.add(opt);
+});
+}
+}
+
+fillDB();
