@@ -151,3 +151,18 @@ el.add(opt);
 }
 
 fillDB();
+function generate(){
+
+const loc = location.value;
+const wea = weather.value;
+const cam = camera.value;
+const qua = quality.value;
+const rat = ratio.value;
+
+result.value = `
+LOKASI: ${loc}
+CUACA: ${wea}
+KAMERA: ${cam}
+KUALITAS: ${qua}
+RASIO: ${rat}
+`;
