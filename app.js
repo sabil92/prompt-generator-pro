@@ -58,3 +58,51 @@ document.getElementById("scene").value;
 navigator.clipboard.writeText(text);
 alert("Copied all!");
 }
+
+function buildMaster(){
+
+const desc = document.getElementById("sceneDesc").value;
+const tone = document.getElementById("tone").value;
+const location = document.getElementById("location").value;
+const time = document.getElementById("time").value;
+const weather = document.getElementById("weather").value;
+const shot = document.getElementById("shot").value;
+
+const master = `
+PRIORITAS REFERENSI GAMBAR:
+Karakter harus sangat mirip dengan gambar referensi. Pertahankan struktur wajah, proporsi tubuh, pose, dan identitas visual.
+
+DESKRIPSI ADEGAN:
+${desc}
+
+Dialog (bahasa indonesia, nada ${tone})
+
+DETAIL KARAKTER 1:
+Penampilan sesuai gambar referensi
+Ekspresi tenang dan datar
+
+DETAIL KARAKTER 2:
+Penampilan sesuai gambar referensi
+Ekspresi tenang dan datar
+
+DETAIL KARAKTER 3:
+Penampilan sesuai gambar referensi
+Ekspresi tenang dan datar
+
+LINGKUNGAN:
+Lokasi: ${location}
+Waktu: ${time}
+Cuaca: ${weather}
+
+KAMERA SINEMATIK:
+Jenis shot: ${shot}
+
+KUALITAS OUTPUT:
+8K ultra HD
+masterpiece quality
+ultra detail
+rasio vertikal 9:16
+`;
+
+document.getElementById("master").value = master;
+}
